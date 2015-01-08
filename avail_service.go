@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 )
 
 // Avail Service
@@ -47,7 +47,7 @@ type StackScriptsResponse struct {
 }
 
 // Get DataCenters
-func (t *AvailService) DataCenters() (*AvailDataCentersResponse, error){
+func (t *AvailService) DataCenters() (*AvailDataCentersResponse, error) {
 	u := &url.Values{}
 	v := AvailDataCentersResponse{}
 	if err := t.client.do("avail.datacenters", u, &v.Response); err != nil {
@@ -61,7 +61,7 @@ func (t *AvailService) DataCenters() (*AvailDataCentersResponse, error){
 }
 
 // Get Distributions
-func (t *AvailService) Distributions() (*AvailDistributionsResponse, error){
+func (t *AvailService) Distributions() (*AvailDistributionsResponse, error) {
 	u := &url.Values{}
 	v := AvailDistributionsResponse{}
 	if err := t.client.do("avail.distributions", u, &v.Response); err != nil {
@@ -75,7 +75,7 @@ func (t *AvailService) Distributions() (*AvailDistributionsResponse, error){
 }
 
 // Get Kernels
-func (t *AvailService) Kernels() (*KernelsResponse, error){
+func (t *AvailService) Kernels() (*KernelsResponse, error) {
 	u := &url.Values{}
 	v := KernelsResponse{}
 	if err := t.client.do("avail.kernels", u, &v.Response); err != nil {
@@ -89,7 +89,7 @@ func (t *AvailService) Kernels() (*KernelsResponse, error){
 }
 
 // Get Linode Plans
-func (t *AvailService) LinodePlans() (*LinodePlansResponse, error){
+func (t *AvailService) LinodePlans() (*LinodePlansResponse, error) {
 	u := &url.Values{}
 	v := LinodePlansResponse{}
 	if err := t.client.do("avail.linodeplans", u, &v.Response); err != nil {
@@ -103,7 +103,7 @@ func (t *AvailService) LinodePlans() (*LinodePlansResponse, error){
 }
 
 // Get Node Balancers
-func (t *AvailService) NodeBalancers() (*NodeBalancersResponse, error){
+func (t *AvailService) NodeBalancers() (*NodeBalancersResponse, error) {
 	u := &url.Values{}
 	v := NodeBalancersResponse{}
 	if err := t.client.do("avail.nodebalancers", u, &v.Response); err != nil {
@@ -117,7 +117,7 @@ func (t *AvailService) NodeBalancers() (*NodeBalancersResponse, error){
 }
 
 // Get All Stackscripts
-func (t *AvailService) StackScripts() (*StackScriptsResponse, error){
+func (t *AvailService) StackScripts() (*StackScriptsResponse, error) {
 	u := &url.Values{}
 	v := StackScriptsResponse{}
 	if err := t.client.do("avail.stackscripts", u, &v.Response); err != nil {

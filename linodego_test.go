@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"testing"
 	"net/url"
+	"testing"
 )
 
 func TestApiRequest(t *testing.T) {
@@ -24,4 +24,3 @@ func TestErrorApiRequest(t *testing.T) {
 		t.Fatal("Should not succeed in executing method not implemented")
 	}
 }
-

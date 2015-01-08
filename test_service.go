@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 )
 
 // Test Service
@@ -17,7 +17,7 @@ type TestResponse struct {
 }
 
 // Echo request with the given key and value
-func (t *TestService) Echo(key string, val string, v *TestResponse) error{
+func (t *TestService) Echo(key string, val string, v *TestResponse) error {
 	u := &url.Values{}
 	u.Add(key, val)
 	if err := t.client.do("test.echo", u, &v.Response); err != nil {

@@ -1,16 +1,16 @@
 package linodego
 
 import (
-	"os"
+	"encoding/json"
 	"errors"
+	"fmt"
+	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
+	"os"
 	"runtime"
-	"io/ioutil"
-	"io"
-	"fmt"
-	"encoding/json"
+	"strings"
 
 	log "github.com/Sirupsen/logrus"
 )
@@ -34,26 +34,26 @@ var (
 // Client of Linode v1 API
 type Client struct {
 	// Linode API Key
-	ApiKey  string       
+	ApiKey string
 	// HTTP client to communicate with Linode API
-	HTTPClient *http.Client 
+	HTTPClient *http.Client
 	// Base URL
 	BaseURL *url.URL
 
 	// Whether to use POST for API request, default is false
-	UsePost bool 
+	UsePost bool
 
 	// Services
-	Test *TestService
-	Api *ApiService
-	Avail *AvailService
+	Test    *TestService
+	Api     *ApiService
+	Avail   *AvailService
 	Account *AccountService
-	Image *ImageService
-	Linode *LinodeService
-	Job *LinodeJobService
-	Config *LinodeConfigService
-	Ip *LinodeIPService
-	Disk *LinodeDiskService
+	Image   *ImageService
+	Linode  *LinodeService
+	Job     *LinodeJobService
+	Config  *LinodeConfigService
+	Ip      *LinodeIPService
+	Disk    *LinodeDiskService
 }
 
 // Creates a new Linode client object.
@@ -68,18 +68,18 @@ func NewClient(AccessKey string, httpClient *http.Client) *Client {
 	}
 
 	c := &Client{ApiKey: AccessKey, HTTPClient: httpClient, BaseURL: baseURL}
-	c.Test = &TestService{client:c}
-	c.Api = &ApiService{client:c}
-	c.Avail = &AvailService{client:c}
-	c.Account = &AccountService{client:c}
-	c.Image = &ImageService{client:c}
-	c.Linode = &LinodeService{client:c}
-	c.Job = &LinodeJobService{client:c}
-	c.Config = &LinodeConfigService{client:c}
-	c.Ip = &LinodeIPService{client:c}
-	c.Job = &LinodeJobService{client:c}
-	c.Disk = &LinodeDiskService{client:c}
-	return c 
+	c.Test = &TestService{client: c}
+	c.Api = &ApiService{client: c}
+	c.Avail = &AvailService{client: c}
+	c.Account = &AccountService{client: c}
+	c.Image = &ImageService{client: c}
+	c.Linode = &LinodeService{client: c}
+	c.Job = &LinodeJobService{client: c}
+	c.Config = &LinodeConfigService{client: c}
+	c.Ip = &LinodeIPService{client: c}
+	c.Job = &LinodeJobService{client: c}
+	c.Disk = &LinodeDiskService{client: c}
+	return c
 }
 
 // execute request
@@ -92,7 +92,6 @@ func (c *Client) do(action string, params *url.Values, v *Response) error {
 	params.Add("api_action", action)
 	return c.request(params, v)
 }
-
 
 // send request via POST to Linode API. The response is stored in the value pointed to by v
 // Returns an error if an API error has occurred.
@@ -116,7 +115,7 @@ func (c *Client) request(params *url.Values, v *Response) error {
 	}
 
 	log.Debugf("HTTP REQUEST: %s %s %s", method, requestURL, body)
-		
+
 	if c.UsePost {
 		request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	}
@@ -138,7 +137,7 @@ func (c *Client) request(params *url.Values, v *Response) error {
 	}
 
 	log.Debugf("HTTP RESPONSE: %s", string(responseBody))
-	
+
 	// Status code 500 is a server error and means nothing can be done at this point.
 	if response.StatusCode != 200 {
 		return ErrUnexpectedResponse

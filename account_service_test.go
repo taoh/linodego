@@ -1,10 +1,9 @@
 package linodego
 
 import (
-	"testing"
 	log "github.com/Sirupsen/logrus"
+	"testing"
 )
-
 
 func TestAccountEstimateInvoice(t *testing.T) {
 	client := NewClient(APIKey, nil)

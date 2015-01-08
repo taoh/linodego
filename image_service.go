@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -24,7 +24,7 @@ type ImageResponse struct {
 }
 
 // List all images
-func (t *ImageService) List() (*ImagesListResponse, error){
+func (t *ImageService) List() (*ImagesListResponse, error) {
 	u := &url.Values{}
 	v := ImagesListResponse{}
 	if err := t.client.do("image.list", u, &v.Response); err != nil {
@@ -39,7 +39,7 @@ func (t *ImageService) List() (*ImagesListResponse, error){
 }
 
 // Update given Image
-func (t *ImageService) Update(imageId int, label string, description string) (*ImageResponse, error){
+func (t *ImageService) Update(imageId int, label string, description string) (*ImageResponse, error) {
 	u := &url.Values{}
 	u.Add("ImageID", strconv.Itoa(imageId))
 	if label != "" {
@@ -48,7 +48,7 @@ func (t *ImageService) Update(imageId int, label string, description string) (*I
 	if description != "" {
 		u.Add("description", description)
 	}
-	
+
 	v := ImageResponse{}
 	if err := t.client.do("image.update", u, &v.Response); err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (t *ImageService) Update(imageId int, label string, description string) (*I
 }
 
 // Delete given Image
-func (t *ImageService) Delete(imageId int) (*ImageResponse, error){
+func (t *ImageService) Delete(imageId int) (*ImageResponse, error) {
 	u := &url.Values{}
 	u.Add("ImageID", strconv.Itoa(imageId))
 	v := ImageResponse{}

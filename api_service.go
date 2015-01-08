@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 )
 
 // API Service
@@ -17,7 +17,7 @@ type ApiResponse struct {
 }
 
 // Get API Specs
-func (t *ApiService) Spec(v *ApiResponse) error{
+func (t *ApiService) Spec(v *ApiResponse) error {
 	u := &url.Values{}
 	if err := t.client.do("api.spec", u, &v.Response); err != nil {
 		return err

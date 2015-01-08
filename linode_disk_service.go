@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -24,7 +24,7 @@ type LinodeDiskJobResponse struct {
 }
 
 // List all disks
-func (t *LinodeDiskService) List() (*LinodeDiskListResponse, error){
+func (t *LinodeDiskService) List() (*LinodeDiskListResponse, error) {
 	u := &url.Values{}
 	v := LinodeDiskListResponse{}
 	if err := t.client.do("linode.disk.list", u, &v.Response); err != nil {
@@ -39,7 +39,7 @@ func (t *LinodeDiskService) List() (*LinodeDiskListResponse, error){
 }
 
 // Create disk
-func (t *LinodeDiskService) Create(linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Create(linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("Size", strconv.Itoa(size))
@@ -60,7 +60,7 @@ func (t *LinodeDiskService) Create(linodeId int, label string, size int, args ma
 }
 
 // Create from Distribution
-func (t *LinodeDiskService) CreateFromDistribution(distributionId int, linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) CreateFromDistribution(distributionId int, linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DistributionID", strconv.Itoa(distributionId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -82,7 +82,7 @@ func (t *LinodeDiskService) CreateFromDistribution(distributionId int, linodeId 
 }
 
 // Create from image
-func (t *LinodeDiskService) CreateFromImage(imageId int, linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) CreateFromImage(imageId int, linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("ImageID", strconv.Itoa(imageId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -107,10 +107,10 @@ func (t *LinodeDiskService) CreateFromImage(imageId int, linodeId int, label str
 
 // Create from stackscript
 func (t *LinodeDiskService) CreateFromStackscript(
-	stackScriptId int, linodeId int, label string, 
+	stackScriptId int, linodeId int, label string,
 	stackScriptUDFResponses string,
 	distributionId int, size int, rootPass string,
-	args map[string]string) (*LinodeDiskJobResponse, error){
+	args map[string]string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("StackScriptID", strconv.Itoa(stackScriptId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -135,7 +135,7 @@ func (t *LinodeDiskService) CreateFromStackscript(
 }
 
 // Delete disk
-func (t *LinodeDiskService) Delete(linodeId int, diskId int) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Delete(linodeId int, diskId int) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DiskID", strconv.Itoa(diskId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -151,7 +151,7 @@ func (t *LinodeDiskService) Delete(linodeId int, diskId int) (*LinodeDiskJobResp
 }
 
 // Duplicate Disk
-func (t *LinodeDiskService) Duplicate(linodeId int, diskId int) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Duplicate(linodeId int, diskId int) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DiskID", strconv.Itoa(diskId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -167,14 +167,14 @@ func (t *LinodeDiskService) Duplicate(linodeId int, diskId int) (*LinodeDiskJobR
 }
 
 // Imagize a disk
-func (t *LinodeDiskService) Imagize(linodeId int, diskId int, description string, label string) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Imagize(linodeId int, diskId int, description string, label string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DiskID", strconv.Itoa(diskId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	if description != "" {
 		u.Add("Description", description)
 	}
-	if (label != "nil") {
+	if label != "nil" {
 		u.Add("Label", label)
 	}
 	v := LinodeDiskJobResponse{}
@@ -189,7 +189,7 @@ func (t *LinodeDiskService) Imagize(linodeId int, diskId int, description string
 }
 
 // Resize a disk
-func (t *LinodeDiskService) Resize(linodeId int, diskId int, size int) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Resize(linodeId int, diskId int, size int) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DiskID", strconv.Itoa(diskId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -206,7 +206,7 @@ func (t *LinodeDiskService) Resize(linodeId int, diskId int, size int) (*LinodeD
 }
 
 // Update a disk
-func (t *LinodeDiskService) Update(linodeId int, diskId int, label string, isReadOnly bool) (*LinodeDiskJobResponse, error){
+func (t *LinodeDiskService) Update(linodeId int, diskId int, label string, isReadOnly bool) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("DiskID", strconv.Itoa(diskId))
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -214,7 +214,7 @@ func (t *LinodeDiskService) Update(linodeId int, diskId int, label string, isRea
 	if isReadOnly {
 		u.Add("isReadOnly", "1")
 	}
-	
+
 	v := LinodeDiskJobResponse{}
 	if err := t.client.do("linode.disk.update", u, &v.Response); err != nil {
 		return nil, err

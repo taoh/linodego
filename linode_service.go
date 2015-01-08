@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -30,7 +30,7 @@ type JobResponse struct {
 }
 
 // List all Linodes
-func (t *LinodeService) List() (*LinodesListResponse, error){
+func (t *LinodeService) List() (*LinodesListResponse, error) {
 	u := &url.Values{}
 	v := LinodesListResponse{}
 	if err := t.client.do("linode.list", u, &v.Response); err != nil {
@@ -45,7 +45,7 @@ func (t *LinodeService) List() (*LinodesListResponse, error){
 }
 
 // Create Linode
-func (t *LinodeService) Create(dataCenterId int, planId int, paymentTerm int) (*LinodeResponse, error){
+func (t *LinodeService) Create(dataCenterId int, planId int, paymentTerm int) (*LinodeResponse, error) {
 	u := &url.Values{}
 	u.Add("DatacenterID", strconv.Itoa(dataCenterId))
 	u.Add("PlanID", strconv.Itoa(planId))
@@ -62,7 +62,7 @@ func (t *LinodeService) Create(dataCenterId int, planId int, paymentTerm int) (*
 }
 
 // Shutdown Linode
-func (t *LinodeService) Shutdown(linodeId int) (*JobResponse, error){
+func (t *LinodeService) Shutdown(linodeId int) (*JobResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	v := JobResponse{}
@@ -77,7 +77,7 @@ func (t *LinodeService) Shutdown(linodeId int) (*JobResponse, error){
 }
 
 // Reboot Linode
-func (t *LinodeService) Reboot(linodeId int, configId int) (*JobResponse, error){
+func (t *LinodeService) Reboot(linodeId int, configId int) (*JobResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	if configId > 0 {
@@ -95,7 +95,7 @@ func (t *LinodeService) Reboot(linodeId int, configId int) (*JobResponse, error)
 }
 
 // Boot Linode
-func (t *LinodeService) Boot(linodeId int, configId int) (*JobResponse, error){
+func (t *LinodeService) Boot(linodeId int, configId int) (*JobResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	if configId > 0 {
@@ -113,7 +113,7 @@ func (t *LinodeService) Boot(linodeId int, configId int) (*JobResponse, error){
 }
 
 // Clone Linode
-func (t *LinodeService) Clone(linodeId int, dataCenterId int, planId int, paymentTerm int) (*LinodeResponse, error){
+func (t *LinodeService) Clone(linodeId int, dataCenterId int, planId int, paymentTerm int) (*LinodeResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("DatacenterID", strconv.Itoa(dataCenterId))
@@ -134,7 +134,7 @@ func (t *LinodeService) Clone(linodeId int, dataCenterId int, planId int, paymen
 }
 
 // Delete Linode
-func (t *LinodeService) Delete(linodeId int, skipChecks bool) (*LinodeResponse, error){
+func (t *LinodeService) Delete(linodeId int, skipChecks bool) (*LinodeResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	if skipChecks {
@@ -153,7 +153,7 @@ func (t *LinodeService) Delete(linodeId int, skipChecks bool) (*LinodeResponse, 
 }
 
 // Resize Linode
-func (t *LinodeService) Resize(linodeId int, planId int) (*LinodeResponse, error){
+func (t *LinodeService) Resize(linodeId int, planId int) (*LinodeResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("PlanID", strconv.Itoa(planId))
@@ -168,7 +168,7 @@ func (t *LinodeService) Resize(linodeId int, planId int) (*LinodeResponse, error
 }
 
 // Update Linode
-func (t *LinodeService) Update(linodeId int, args map[string]string) (*LinodeResponse, error){
+func (t *LinodeService) Update(linodeId int, args map[string]string) (*LinodeResponse, error) {
 	u := &url.Values{}
 
 	u.Add("LinodeID", strconv.Itoa(linodeId))

@@ -1,10 +1,9 @@
 package linodego
 
 import (
-	"testing"
 	log "github.com/Sirupsen/logrus"
+	"testing"
 )
-
 
 func TestListImages(t *testing.T) {
 	client := NewClient(APIKey, nil)

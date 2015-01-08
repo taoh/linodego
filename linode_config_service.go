@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -24,7 +24,7 @@ type LinodeConfigResponse struct {
 }
 
 // Get Config List
-func (t *LinodeConfigService) List() (*LinodeConfigListResponse, error){
+func (t *LinodeConfigService) List() (*LinodeConfigListResponse, error) {
 	u := &url.Values{}
 	v := LinodeConfigListResponse{}
 	if err := t.client.do("linode.config.list", u, &v.Response); err != nil {
@@ -39,7 +39,7 @@ func (t *LinodeConfigService) List() (*LinodeConfigListResponse, error){
 }
 
 // Create Config
-func (t *LinodeConfigService) Create(linodeId int, kernelId int, label string, args map[string]string) (*LinodeConfigResponse, error){
+func (t *LinodeConfigService) Create(linodeId int, kernelId int, label string, args map[string]string) (*LinodeConfigResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("KernelID", strconv.Itoa(kernelId))
@@ -60,16 +60,16 @@ func (t *LinodeConfigService) Create(linodeId int, kernelId int, label string, a
 }
 
 // Update Config
-func (t *LinodeConfigService) Update(configId int, linodeId int, kernelId int, args map[string]string) (*LinodeConfigResponse, error){
+func (t *LinodeConfigService) Update(configId int, linodeId int, kernelId int, args map[string]string) (*LinodeConfigResponse, error) {
 	u := &url.Values{}
 	u.Add("ConfigID", strconv.Itoa(configId))
-	if (linodeId > 0) {
+	if linodeId > 0 {
 		u.Add("LinodeID", strconv.Itoa(linodeId))
 	}
-	if (kernelId > 0) {
+	if kernelId > 0 {
 		u.Add("KernelID", strconv.Itoa(kernelId))
 	}
-	
+
 	// add optional parameters
 	for k, v := range args {
 		u.Add(k, v)
@@ -86,7 +86,7 @@ func (t *LinodeConfigService) Update(configId int, linodeId int, kernelId int, a
 }
 
 // Delete Config
-func (t *LinodeConfigService) Delete(linodeId int, configId int) (*LinodeConfigResponse, error){
+func (t *LinodeConfigService) Delete(linodeId int, configId int) (*LinodeConfigResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("ConfigID", strconv.Itoa(configId))

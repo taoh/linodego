@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -36,7 +36,7 @@ type LinodeLinodeIPAddressResponse struct {
 }
 
 // List All Ips
-func (t *LinodeIPService) List() (*LinodeIPListResponse, error){
+func (t *LinodeIPService) List() (*LinodeIPListResponse, error) {
 	u := &url.Values{}
 	v := LinodeIPListResponse{}
 	if err := t.client.do("linode.ip.list", u, &v.Response); err != nil {
@@ -51,7 +51,7 @@ func (t *LinodeIPService) List() (*LinodeIPListResponse, error){
 }
 
 // Add Private IP
-func (t *LinodeIPService) AddPrivate(linodeId int) (*LinodeIPAddressResponse, error){
+func (t *LinodeIPService) AddPrivate(linodeId int) (*LinodeIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	v := LinodeIPAddressResponse{}
@@ -66,7 +66,7 @@ func (t *LinodeIPService) AddPrivate(linodeId int) (*LinodeIPAddressResponse, er
 }
 
 // Add Public IP
-func (t *LinodeIPService) AddPublic(linodeId int) (*LinodeIPAddressResponse, error){
+func (t *LinodeIPService) AddPublic(linodeId int) (*LinodeIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	v := LinodeIPAddressResponse{}
@@ -81,7 +81,7 @@ func (t *LinodeIPService) AddPublic(linodeId int) (*LinodeIPAddressResponse, err
 }
 
 // Set RDNS
-func (t *LinodeIPService) SetRDNS(linodeId int, hostname string) (*LinodeRDNSIPAddressResponse, error){
+func (t *LinodeIPService) SetRDNS(linodeId int, hostname string) (*LinodeRDNSIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("Hostname", hostname)
@@ -97,7 +97,7 @@ func (t *LinodeIPService) SetRDNS(linodeId int, hostname string) (*LinodeRDNSIPA
 }
 
 // Swap Ips
-func (t *LinodeIPService) Swap(ipAddressId int, withIPAddressId int, toLinodeId int) (*LinodeLinodeIPAddressResponse, error){
+func (t *LinodeIPService) Swap(ipAddressId int, withIPAddressId int, toLinodeId int) (*LinodeLinodeIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("toLinodeID", strconv.Itoa(toLinodeId))
 	u.Add("ipAddressID", strconv.Itoa(ipAddressId))

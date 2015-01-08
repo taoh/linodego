@@ -1,8 +1,8 @@
 package linodego
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 	"strconv"
 )
 
@@ -17,9 +17,8 @@ type LinodesJobListResponse struct {
 	Jobs []Job
 }
 
-
 // List all jobs
-func (t *LinodeJobService) List(linodeId int, jobId int, pendingOnly bool) (*LinodesJobListResponse, error){
+func (t *LinodeJobService) List(linodeId int, jobId int, pendingOnly bool) (*LinodesJobListResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	if pendingOnly {
