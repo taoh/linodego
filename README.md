@@ -40,6 +40,9 @@ go get "github.com/taoh/linodego"
 import "github.com/taoh/linodego"
 ```
 
+### Documentation
+See [GoDoc](http://godoc.org/github.com/taoh/linodego)
+
 ### License
 The MIT License (MIT)
 
