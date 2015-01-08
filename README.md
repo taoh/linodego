@@ -1,5 +1,4 @@
 # linodego
----
 
 ### Overview
 
@@ -15,7 +14,8 @@ requests are sent using POST methods.
 ### Example
 
 Check examples/client.go for sample usage. Note that you must supple API Key
-in examples/client.go before running the program:
+in examples/client.go before running the program. Get API from [https://manager.linode.com/profile/api](https://manager.linode.com/profile/api)
+
 
 ```
 go run examples/client.go
@@ -40,4 +40,8 @@ go get "github.com/taoh/linodego"
 import "github.com/taoh/linodego"
 ```
 
+### License
+The MIT License (MIT)
+
+Copyright (c) 2015 TH
 
