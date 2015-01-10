@@ -23,9 +23,13 @@ type LinodeDiskJobResponse struct {
 	DiskJob DiskJob
 }
 
-// List all disks
-func (t *LinodeDiskService) List() (*LinodeDiskListResponse, error) {
+// List all disks. If diskId is greater than 0, limit the results to given disk.
+func (t *LinodeDiskService) List(linodeId int, diskId int) (*LinodeDiskListResponse, error) {
 	u := &url.Values{}
+	u.Add("LinodeID", strconv.Itoa(linodeId))
+	if diskId > 0 {
+		u.Add("DiskID", strconv.Itoa(diskId))
+	}
 	v := LinodeDiskListResponse{}
 	if err := t.client.do("linode.disk.list", u, &v.Response); err != nil {
 		return nil, err

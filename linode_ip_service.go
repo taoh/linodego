@@ -35,10 +35,17 @@ type LinodeLinodeIPAddressResponse struct {
 	LinodeIPAddresses []LinodeIPAddress
 }
 
-// List All Ips
-func (t *LinodeIPService) List() (*LinodeIPListResponse, error) {
+// List All Ips. If linodeId or ipAddressId is less than 0, all IPs are returned.
+// Otherwise, limits the reuslt to the given linodeId, ipAddressId or both.
+func (t *LinodeIPService) List(linodeId int, ipAddressId int) (*LinodeIPListResponse, error) {
 	u := &url.Values{}
 	v := LinodeIPListResponse{}
+	if linodeId > 0 {
+		u.Add("LinodeID", strconv.Itoa(linodeId))
+	}
+	if ipAddressId > 0 {
+		u.Add("IPAddressID", strconv.Itoa(ipAddressId))
+	}
 	if err := t.client.do("linode.ip.list", u, &v.Response); err != nil {
 		return nil, err
 	}

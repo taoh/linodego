@@ -23,19 +23,19 @@ type DataCenter struct {
 }
 
 type Distribution struct {
-	Is64Bit             int        `json:"IS64BIT"`
-	Label               string     `json:"LABEL"`
-	MinImageSize        int        `json:"MINIMAGESIZE"`
-	DistributionId      int        `json:"DISTRIBUTIONID"`
-	CreatedDt           CustomTime `json:"CREATE_DT"`
-	RequiresPVOPSKernel int        `json:"REQUIRESPVOPSKERNEL"`
+	Is64Bit             int          `json:"IS64BIT"`
+	Label               CustomString `json:"LABEL"`
+	MinImageSize        int          `json:"MINIMAGESIZE"`
+	DistributionId      int          `json:"DISTRIBUTIONID"`
+	CreatedDt           CustomTime   `json:"CREATE_DT"`
+	RequiresPVOPSKernel int          `json:"REQUIRESPVOPSKERNEL"`
 }
 
 type Kernel struct {
-	Label    string `json:"LABEL"`
-	IsXen    int    `json:"ISXEN"`
-	IsPVOPS  int    `json:"ISPVOPS"`
-	KernelId int    `json:"KERNELID"`
+	Label    CustomString `json:"LABEL"`
+	IsXen    int          `json:"ISXEN"`
+	IsPVOPS  int          `json:"ISPVOPS"`
+	KernelId int          `json:"KERNELID"`
 }
 
 type LinodePlan struct {
@@ -44,7 +44,7 @@ type LinodePlan struct {
 	RAM    int            `json:"RAM"`
 	Xfer   int            `json:"Xfer"`
 	PlanId int            `json:"PLANID"`
-	Label  string         `json:"LABEL"`
+	Label  CustomString   `json:"LABEL"`
 	Avail  map[string]int `json:"AVAIL"`
 	Disk   int            `json:"DISK"`
 	Hourly float32        `json:"HOURLY"`
@@ -60,16 +60,16 @@ type StackScript struct {
 	//Script string `json:"SCRIPT"`
 	//Description string `json:"DESCRIPTION"`
 	//DistributionidList int `json:"DISTRIBUTIONIDLIST"`
-	Label             string     `json:"LABEL"`
-	DeploymentsTotal  int        `json:"DEPLOYMENTSTOTAL"`
-	LatestRev         int        `json:"LATESTREV"`
-	CreatedDt         CustomTime `json:"CREATE_DT"`
-	DeploymentsActive int        `json:"DEPLOYMENTSACTIVE"`
-	StackScriptId     int        `json:"STACKSCRIPTID"`
-	RevNote           int        `json:"REV_NOTE"`
-	RevDt             int        `json:"REV_DT"`
-	IsPublic          int        `json:"ISPUBLIC"`
-	UserId            int        `json:"USERID"`
+	Label             CustomString `json:"LABEL"`
+	DeploymentsTotal  int          `json:"DEPLOYMENTSTOTAL"`
+	LatestRev         int          `json:"LATESTREV"`
+	CreatedDt         CustomTime   `json:"CREATE_DT"`
+	DeploymentsActive int          `json:"DEPLOYMENTSACTIVE"`
+	StackScriptId     int          `json:"STACKSCRIPTID"`
+	RevNote           int          `json:"REV_NOTE"`
+	RevDt             int          `json:"REV_DT"`
+	IsPublic          int          `json:"ISPUBLIC"`
+	UserId            int          `json:"USERID"`
 }
 
 type EstimateInvoice struct {
@@ -88,45 +88,45 @@ type AccountInfo struct {
 }
 
 type Image struct {
-	CreateDt    CustomTime `json:"CREATE_DT"`
-	Creator     string     `json:"CREATOR"`
-	Description string     `json:"DESCRIPTION"`
-	FsType      string     `json:"FS_TYPE"`
-	ImageId     int        `json:"IMAGEID"`
-	IsPublic    int        `json:"ISPUBLIC"`
-	Label       string     `json:"LABEL"`
-	LastUsedDt  CustomTime `json:"LAST_USED_DT"`
-	MinSize     int        `json:"MINSIZE"`
-	Status      string     `json:"STATUS"`
-	Type        string     `json:"TYPE"`
+	CreateDt    CustomTime   `json:"CREATE_DT"`
+	Creator     string       `json:"CREATOR"`
+	Description string       `json:"DESCRIPTION"`
+	FsType      string       `json:"FS_TYPE"`
+	ImageId     int          `json:"IMAGEID"`
+	IsPublic    int          `json:"ISPUBLIC"`
+	Label       CustomString `json:"LABEL"`
+	LastUsedDt  CustomTime   `json:"LAST_USED_DT"`
+	MinSize     int          `json:"MINSIZE"`
+	Status      string       `json:"STATUS"`
+	Type        string       `json:"TYPE"`
 }
 
 type Linode struct {
-	TotalXFer             int        `json:"TOTALXFER"`
-	BackupsEnabled        int        `json:"BACKUPSENABLED"`
-	WatchDog              int        `json:"WATCHDOG"`
-	LpmDisplayGroup       string     `json:"LPM_DISPLAYGROUP"`
-	AlertBwQuotaEnabled   int        `json:"ALERT_BWQUOTA_ENABLED"`
-	Status                int        `json:"STATUS"`
-	TotalRAM              int        `json:"TOTALRAM"`
-	AlertDiskIOThreshold  int        `json:"ALERT_DISKIO_THRESHOLD"`
-	BackupWindow          int        `json:"BACKUPWINDOW"`
-	AlertBwOutEnabled     int        `json:"ALERT_BWOUT_ENABLED"`
-	AlertBwOutThreshold   int        `json:"ALERT_BWOUT_THRESHOLD"`
-	Label                 string     `json:"LABEL"`
-	AlertCPUEnabled       int        `json:"ALERT_CPU_ENABLED"`
-	AlertBwQuotaThreshold int        `json:"ALERT_BWQUOTA_THRESHOLD"`
-	AlertBwInThreshold    int        `json:"ALERT_BWIN_THRESHOLD"`
-	BackupWeeklyDay       int        `json:"BACKUPWEEKLYDAY"`
-	DataCenterId          int        `json:"DATACENTERID"`
-	AlertCPUThreshold     int        `json:"ALERT_CPU_THRESHOLD"`
-	TotalHD               int        `json:"TOTALHD"`
-	AlertDiskIOEnabled    int        `json:"ALERT_DISKIO_ENABLED"`
-	AlertBwInEnabled      int        `json:"ALERT_BWIN_ENABLED"`
-	LinodeId              int        `json:"LINODEID"`
-	CreateDt              CustomTime `json:"CREATE_DT"`
-	PlanId                int        `json:"PLANID"`
-	DistributionVendor    string     `json:"DISTRIBUTIONVENDOR"`
+	TotalXFer             int          `json:"TOTALXFER"`
+	BackupsEnabled        int          `json:"BACKUPSENABLED"`
+	WatchDog              int          `json:"WATCHDOG"`
+	LpmDisplayGroup       string       `json:"LPM_DISPLAYGROUP"`
+	AlertBwQuotaEnabled   int          `json:"ALERT_BWQUOTA_ENABLED"`
+	Status                int          `json:"STATUS"`
+	TotalRAM              int          `json:"TOTALRAM"`
+	AlertDiskIOThreshold  int          `json:"ALERT_DISKIO_THRESHOLD"`
+	BackupWindow          int          `json:"BACKUPWINDOW"`
+	AlertBwOutEnabled     int          `json:"ALERT_BWOUT_ENABLED"`
+	AlertBwOutThreshold   int          `json:"ALERT_BWOUT_THRESHOLD"`
+	Label                 CustomString `json:"LABEL"`
+	AlertCPUEnabled       int          `json:"ALERT_CPU_ENABLED"`
+	AlertBwQuotaThreshold int          `json:"ALERT_BWQUOTA_THRESHOLD"`
+	AlertBwInThreshold    int          `json:"ALERT_BWIN_THRESHOLD"`
+	BackupWeeklyDay       int          `json:"BACKUPWEEKLYDAY"`
+	DataCenterId          int          `json:"DATACENTERID"`
+	AlertCPUThreshold     int          `json:"ALERT_CPU_THRESHOLD"`
+	TotalHD               int          `json:"TOTALHD"`
+	AlertDiskIOEnabled    int          `json:"ALERT_DISKIO_ENABLED"`
+	AlertBwInEnabled      int          `json:"ALERT_BWIN_ENABLED"`
+	LinodeId              int          `json:"LINODEID"`
+	CreateDt              CustomTime   `json:"CREATE_DT"`
+	PlanId                int          `json:"PLANID"`
+	DistributionVendor    string       `json:"DISTRIBUTIONVENDOR"`
 }
 
 type LinodeId struct {
@@ -146,21 +146,21 @@ type Job struct {
 }
 
 type LinodeConfig struct {
-	HelperDisableUpdateDB int    `json:"helper_disableUpdateDB"`
-	RootDeviceRO          bool   `json:"RootDeviceRO"`
-	RootDeviceCustom      string `json:"RootDeviceCustom"`
-	Label                 string `json:"Label"`
-	DiskList              string `json:"DiskList"`
-	LinodeId              string `json:"LinodeID"`
-	Comments              string `json:"Comments"`
-	ConfigId              string `json:"ConfigID"`
-	HelperXen             int    `json:"helper_xen"`
-	RunLevel              string `json:"RunLevel"`
-	HelperDepmod          string `json:"helper_depmod"`
-	KernelId              int    `json:"KernelID"`
-	RootDeviceNum         int    `json:"RootDeviceNum"`
-	HelperLibtls          bool   `json:"helper_libtls"`
-	RAMLimit              int    `json:"RAMLimit"`
+	HelperDisableUpdateDB int          `json:"helper_disableUpdateDB"`
+	RootDeviceRO          bool         `json:"RootDeviceRO"`
+	RootDeviceCustom      string       `json:"RootDeviceCustom"`
+	Label                 CustomString `json:"Label"`
+	DiskList              string       `json:"DiskList"`
+	LinodeId              int          `json:"LinodeID"`
+	Comments              string       `json:"Comments"`
+	ConfigId              string       `json:"ConfigID"`
+	HelperXen             int          `json:"helper_xen"`
+	RunLevel              string       `json:"RunLevel"`
+	HelperDepmod          string       `json:"helper_depmod"`
+	KernelId              int          `json:"KernelID"`
+	RootDeviceNum         int          `json:"RootDeviceNum"`
+	HelperLibtls          bool         `json:"helper_libtls"`
+	RAMLimit              int          `json:"RAMLimit"`
 }
 
 type LinodeConfigId struct {
@@ -173,15 +173,15 @@ type DiskJob struct {
 }
 
 type Disk struct {
-	UpdateDt   CustomTime `json:"UPDATE_DT"`
-	DiskId     int        `json:"DISKID"`
-	Label      string     `json:"LABEL"`
-	Type       string     `json:"TYPE"`
-	LinodeId   int        `json:"LINODEID"`
-	IsReadOnly int        `json:"ISREADONLY"`
-	Status     int        `json:"STATUS"`
-	CreateDt   int        `json:"CREATE_DT"`
-	Size       int        `json:"SIZE"`
+	UpdateDt   CustomTime   `json:"UPDATE_DT"`
+	DiskId     int          `json:"DISKID"`
+	Label      CustomString `json:"LABEL"`
+	Type       string       `json:"TYPE"`
+	LinodeId   int          `json:"LINODEID"`
+	IsReadOnly int          `json:"ISREADONLY"`
+	Status     int          `json:"STATUS"`
+	CreateDt   CustomTime   `json:"CREATE_DT"`
+	Size       int          `json:"SIZE"`
 }
 
 type IPAddress struct {
@@ -204,7 +204,7 @@ type RDNSIPAddress struct {
 }
 
 type LinodeIPAddress struct {
-	LinodeId    string `json:"LINODEID"`
+	LinodeId    int    `json:"LINODEID"`
 	IPAddress   string `json:"IPADDRESS"`
 	IPAddressId int    `json:"IPADDRESSID"`
 }

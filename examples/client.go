@@ -13,7 +13,7 @@ func main() {
 		log.SetLevel(log.DebugLevel) // set debug level
 	}
 
-	apiKey := "[SUPPLY YOUR API KEY HERE]"
+	apiKey := "AWRNGe5keO0sMUw1WPA4GHLSGSLAbZVu9S7nYJXuMzKFYNyPpLWB7GmQeyLm9Loa"
 	client := linodego.NewClient(apiKey, nil)
 
 	// Create a linode
@@ -22,22 +22,47 @@ func main() {
 		log.Fatal(err)
 	}
 	linodeId := v.LinodeId.LinodeId
-	log.Debugf("Created linode: %d", linodeId)
+	log.Infof("Created linode: %d", linodeId)
 	
 	
-	// Shutdown the linode
-	v2, err := client.Linode.Shutdown(linodeId)
+	// Get IP Address
+	v2, err := client.Ip.List(linodeId, -1)
 	if err != nil {
 		log.Fatal(err)
 	}
-	job := v2.Job
-	log.Debugf("Shutdown linode: %s", job)
+	fullIpAddress := v2.FullIPAddresses[0]
+	log.Infof("IP Address: Id: %d, Address: %s", fullIpAddress.IPAddressId, fullIpAddress.IPAddress )
+
+	// Update label, https://github.com/taoh/linodego/issues/1
+	args := make(map[string]interface{})
+	args["Label"] = 12345
+	_, err = client.Linode.Update(linodeId, args)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Infof("Updated Linode: Label %s", args)
+
+	// List linode
+	v3, err := client.Linode.List(linodeId)
+	if err != nil {
+		log.Fatal(err)
+	}
+	linode := v3.Linodes[0]
+	log.Infof("List Linode: %d, Label: %s, Status: %d", linode.LinodeId, linode.Label, linode.Status)
+
+	// Shutdown the linode
+	v4, err := client.Linode.Shutdown(linodeId)
+	if err != nil {
+		log.Fatal(err)
+	}
+	job := v4.Job
+	log.Infof("Shutdown linode: %s", job)
 
 	// Delete the linode
-	v, err = client.Linode.Delete(linodeId, false)
+	_, err = client.Linode.Delete(linodeId, false)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Debugf("Deleted linode: %s", linodeId)
+	log.Infof("Deleted linode: %s", linodeId)
 }

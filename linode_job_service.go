@@ -17,7 +17,7 @@ type LinodesJobListResponse struct {
 	Jobs []Job
 }
 
-// List all jobs
+// List all jobs. If jobId is greater than 0, limit the list to given jobId.
 func (t *LinodeJobService) List(linodeId int, jobId int, pendingOnly bool) (*LinodesJobListResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))

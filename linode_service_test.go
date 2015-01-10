@@ -8,7 +8,7 @@ import (
 func TestListLinodes(t *testing.T) {
 	client := NewClient(APIKey, nil)
 
-	v, err := client.Linode.List()
+	v, err := client.Linode.List(-1)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -2,6 +2,7 @@ package linodego
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/url"
 	"strconv"
 )
@@ -29,10 +30,14 @@ type JobResponse struct {
 	Job map[string]interface{}
 }
 
-// List all Linodes
-func (t *LinodeService) List() (*LinodesListResponse, error) {
+// List all Linodes. If linodeId is less than 0, all linodes are returned.
+// Otherwise, only returns the linode for given Id.
+func (t *LinodeService) List(linodeId int) (*LinodesListResponse, error) {
 	u := &url.Values{}
 	v := LinodesListResponse{}
+	if linodeId > 0 {
+		u.Add("LinodeID", strconv.Itoa(linodeId))
+	}
 	if err := t.client.do("linode.list", u, &v.Response); err != nil {
 		return nil, err
 	}
@@ -168,13 +173,13 @@ func (t *LinodeService) Resize(linodeId int, planId int) (*LinodeResponse, error
 }
 
 // Update Linode
-func (t *LinodeService) Update(linodeId int, args map[string]string) (*LinodeResponse, error) {
+func (t *LinodeService) Update(linodeId int, args map[string]interface{}) (*LinodeResponse, error) {
 	u := &url.Values{}
 
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	// add optional parameters
 	for k, v := range args {
-		u.Add(k, v)
+		u.Add(k, fmt.Sprintf("%v", v))
 	}
 
 	v := LinodeResponse{}

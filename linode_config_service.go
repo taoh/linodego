@@ -23,9 +23,12 @@ type LinodeConfigResponse struct {
 	LinodeConfigId LinodeConfigId
 }
 
-// Get Config List
-func (t *LinodeConfigService) List() (*LinodeConfigListResponse, error) {
+// Get Config List. If configId is greater than 0, limit results to given config.
+func (t *LinodeConfigService) List(linodeId int, configId int) (*LinodeConfigListResponse, error) {
 	u := &url.Values{}
+	if configId > 0 {
+		u.Add("ConfigID", strconv.Itoa(configId))
+	}
 	v := LinodeConfigListResponse{}
 	if err := t.client.do("linode.config.list", u, &v.Response); err != nil {
 		return nil, err
@@ -59,7 +62,7 @@ func (t *LinodeConfigService) Create(linodeId int, kernelId int, label string, a
 	return &v, nil
 }
 
-// Update Config
+// Update Config. See https://www.linode.com/api/linode/linode.config.update for allowed arguments.
 func (t *LinodeConfigService) Update(configId int, linodeId int, kernelId int, args map[string]string) (*LinodeConfigResponse, error) {
 	u := &url.Values{}
 	u.Add("ConfigID", strconv.Itoa(configId))
