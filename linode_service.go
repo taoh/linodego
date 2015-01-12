@@ -27,7 +27,7 @@ type LinodeResponse struct {
 // Job Response
 type JobResponse struct {
 	Response
-	Job map[string]interface{}
+	JobId JobId
 }
 
 // List all Linodes. If linodeId is less than 0, all linodes are returned.
@@ -75,7 +75,7 @@ func (t *LinodeService) Shutdown(linodeId int) (*JobResponse, error) {
 		return nil, err
 	}
 
-	if err := json.Unmarshal(v.RawData, &v.Job); err != nil {
+	if err := json.Unmarshal(v.RawData, &v.JobId); err != nil {
 		return nil, err
 	}
 	return &v, nil
@@ -93,7 +93,7 @@ func (t *LinodeService) Reboot(linodeId int, configId int) (*JobResponse, error)
 		return nil, err
 	}
 
-	if err := json.Unmarshal(v.RawData, &v.Job); err != nil {
+	if err := json.Unmarshal(v.RawData, &v.JobId); err != nil {
 		return nil, err
 	}
 	return &v, nil
@@ -111,7 +111,7 @@ func (t *LinodeService) Boot(linodeId int, configId int) (*JobResponse, error) {
 		return nil, err
 	}
 
-	if err := json.Unmarshal(v.RawData, &v.Job); err != nil {
+	if err := json.Unmarshal(v.RawData, &v.JobId); err != nil {
 		return nil, err
 	}
 	return &v, nil

@@ -134,15 +134,15 @@ type LinodeId struct {
 }
 
 type Job struct {
-	EnteredDt    CustomTime `json:"ENTERED_DT"`
-	Action       string     `json:"ACTION"`
-	Label        string     `json:"LABEL"`
-	HostStartDt  CustomTime `json:"HOST_START_DT"`
-	LinodeId     int        `json:"LINODEID"`
-	HostFinishDt CustomTime `json:"HOST_FINISH_DT"`
-	HOST_MESSAGE string     `json:"HOST_MESSAGE"`
-	JobId        int        `json:"JOBID"`
-	HostSuccess  int        `json:"HOST_SUCCESS"`
+	EnteredDt    CustomTime   `json:"ENTERED_DT"`
+	Action       string       `json:"ACTION"`
+	Label        string       `json:"LABEL"`
+	HostStartDt  CustomTime   `json:"HOST_START_DT"`
+	LinodeId     int          `json:"LINODEID"`
+	HostFinishDt CustomTime   `json:"HOST_FINISH_DT"`
+	HostMessage  string       `json:"HOST_MESSAGE"`
+	JobId        int          `json:"JOBID"`
+	HostSuccess  CustomString `json:"HOST_SUCCESS"` // Linode API returns empty string if HostSuccess is false. 1 otherwise.
 }
 
 type LinodeConfig struct {
@@ -165,6 +165,10 @@ type LinodeConfig struct {
 
 type LinodeConfigId struct {
 	LinodeConfigId int `json:"ConfigID"`
+}
+
+type JobId struct {
+	JobId int `json:"JobID"`
 }
 
 type DiskJob struct {

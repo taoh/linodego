@@ -22,3 +22,8 @@ func (cs *CustomString) UnmarshalJSON(b []byte) (err error) {
 func (cs *CustomString) MarshalJSON() ([]byte, error) {
 	return []byte(cs.string), nil
 }
+
+func (cs *CustomString) String() string {
+	// remove double quotes
+	return cs.string[1 : len(cs.string)-1]
+}

@@ -43,10 +43,11 @@ func (t *LinodeDiskService) List(linodeId int, diskId int) (*LinodeDiskListRespo
 }
 
 // Create disk
-func (t *LinodeDiskService) Create(linodeId int, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error) {
+func (t *LinodeDiskService) Create(linodeId int, diskType string, label string, size int, args map[string]string) (*LinodeDiskJobResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
 	u.Add("Size", strconv.Itoa(size))
+	u.Add("Type", diskType)
 	u.Add("Label", label)
 	// add optional parameters
 	for k, v := range args {

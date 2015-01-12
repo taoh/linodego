@@ -2,18 +2,17 @@
 package main
 
 import (
-	"os"
-	"github.com/taoh/linodego"
 	log "github.com/Sirupsen/logrus"
+	"github.com/taoh/linodego"
+	"os"
 )
-
 
 func main() {
 	if os.Getenv("DEBUG") == "true" {
 		log.SetLevel(log.DebugLevel) // set debug level
 	}
 
-	apiKey := "AWRNGe5keO0sMUw1WPA4GHLSGSLAbZVu9S7nYJXuMzKFYNyPpLWB7GmQeyLm9Loa"
+	apiKey := "[API Key]"
 	client := linodego.NewClient(apiKey, nil)
 
 	// Create a linode
@@ -23,15 +22,14 @@ func main() {
 	}
 	linodeId := v.LinodeId.LinodeId
 	log.Infof("Created linode: %d", linodeId)
-	
-	
+
 	// Get IP Address
 	v2, err := client.Ip.List(linodeId, -1)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fullIpAddress := v2.FullIPAddresses[0]
-	log.Infof("IP Address: Id: %d, Address: %s", fullIpAddress.IPAddressId, fullIpAddress.IPAddress )
+	log.Infof("IP Address: Id: %d, Address: %s", fullIpAddress.IPAddressId, fullIpAddress.IPAddress)
 
 	// Update label, https://github.com/taoh/linodego/issues/1
 	args := make(map[string]interface{})
