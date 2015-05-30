@@ -29,6 +29,7 @@ func (t *LinodeConfigService) List(linodeId int, configId int) (*LinodeConfigLis
 	if configId > 0 {
 		u.Add("ConfigID", strconv.Itoa(configId))
 	}
+	u.Add("LinodeID", strconv.Itoa(linodeId))
 	v := LinodeConfigListResponse{}
 	if err := t.client.do("linode.config.list", u, &v.Response); err != nil {
 		return nil, err
