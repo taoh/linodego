@@ -153,13 +153,13 @@ type LinodeConfig struct {
 	DiskList              string       `json:"DiskList"`
 	LinodeId              int          `json:"LinodeID"`
 	Comments              string       `json:"Comments"`
-	ConfigId              string       `json:"ConfigID"`
+	ConfigId              int          `json:"ConfigID"`
 	HelperXen             int          `json:"helper_xen"`
 	RunLevel              string       `json:"RunLevel"`
-	HelperDepmod          string       `json:"helper_depmod"`
+	HelperDepmod          CustomBool   `json:"helper_depmod"`
 	KernelId              int          `json:"KernelID"`
 	RootDeviceNum         int          `json:"RootDeviceNum"`
-	HelperLibtls          bool         `json:"helper_libtls"`
+	HelperLibtls          CustomBool   `json:"helper_libtls"`
 	RAMLimit              int          `json:"RAMLimit"`
 }
 
