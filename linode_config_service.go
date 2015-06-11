@@ -49,9 +49,7 @@ func (t *LinodeConfigService) Create(linodeId int, kernelId int, label string, a
 	u.Add("KernelID", strconv.Itoa(kernelId))
 	u.Add("Label", label)
 	// add optional parameters
-	for k, v := range args {
-		u.Add(k, v)
-	}
+	processOptionalArgs(args, u)
 	v := LinodeConfigResponse{}
 	if err := t.client.do("linode.config.create", u, &v.Response); err != nil {
 		return nil, err
@@ -75,9 +73,7 @@ func (t *LinodeConfigService) Update(configId int, linodeId int, kernelId int, a
 	}
 
 	// add optional parameters
-	for k, v := range args {
-		u.Add(k, v)
-	}
+	processOptionalArgs(args, u)
 	v := LinodeConfigResponse{}
 	if err := t.client.do("linode.config.update", u, &v.Response); err != nil {
 		return nil, err
@@ -103,4 +99,13 @@ func (t *LinodeConfigService) Delete(linodeId int, configId int) (*LinodeConfigR
 		return nil, err
 	}
 	return &v, nil
+}
+
+func processOptionalArgs(args map[string]string, parameters *url.Values) {
+	for k, v := range args {
+		if k == "helper_xen" {
+			parameters.Add("helper_distro", v)
+		}
+		parameters.Add(k, v)
+	}
 }
