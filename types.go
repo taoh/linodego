@@ -160,6 +160,7 @@ type LinodeConfig struct {
 	KernelId              int          `json:"KernelID"`
 	RootDeviceNum         int          `json:"RootDeviceNum"`
 	HelperLibtls          CustomBool   `json:"helper_libtls"`
+	HelperNetwork         CustomBool   `json:"helper_network"`
 	RAMLimit              int          `json:"RAMLimit"`
 }
 
