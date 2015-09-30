@@ -154,7 +154,8 @@ type LinodeConfig struct {
 	LinodeId              int          `json:"LinodeID"`
 	Comments              string       `json:"Comments"`
 	ConfigId              int          `json:"ConfigID"`
-	HelperXen             int          `json:"helper_xen"`
+	HelperXen             int          `json:"helper_xen"` // Depreciated, use HelperDistro instead
+	HelperDistro          CustomBool   `json:"helper_distro"`
 	RunLevel              string       `json:"RunLevel"`
 	HelperDepmod          CustomBool   `json:"helper_depmod"`
 	KernelId              int          `json:"KernelID"`
