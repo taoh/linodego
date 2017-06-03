@@ -44,6 +44,19 @@ func TestAvailKernels(t *testing.T) {
 	}
 }
 
+func TestFilterAvailKernels(t *testing.T) {
+	client := NewClient(APIKey, nil)
+
+	v, err := client.Avail.FilterKernels(0, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	for _, kernel := range v.Kernels {
+		log.Debugf("Kernel: %s, %d, %d, %d", kernel.Label, kernel.IsXen, kernel.IsPVOPS, kernel.KernelId)
+	}
+}
+
 func TestAvailLinodePlans(t *testing.T) {
 	client := NewClient(APIKey, nil)
 
