@@ -48,6 +48,7 @@ func TestUpdateImage(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	// this takes a while
 	WaitForPendingJobs(client, linodeId)
 
 	// list images for this linode account
@@ -64,8 +65,6 @@ func TestUpdateImage(t *testing.T) {
 			break
 		}
 	}
-
-	WaitForPendingJobs(client, linodeId)
 
 	imageUpdateResponse, err := client.Image.Update(imageid, "Updated label", "Updated description")
 	if err != nil {
