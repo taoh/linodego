@@ -1,6 +1,7 @@
 package linodego
 
 import (
+	log "github.com/Sirupsen/logrus"
 	"time"
 )
 
@@ -56,4 +57,18 @@ func (ct *CustomShortTime) MarshalJSON() ([]byte, error) {
 
 func (ct *CustomShortTime) IsSet() bool {
 	return ct.UnixNano() != nilTime
+}
+
+// expose a means to wait for a linode's pending jobs to complete
+func WaitForPendingJobs(client *Client, linodeid int) {
+	for {
+		jobListResp, err := client.Job.List(linodeid, 0, true)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if len(jobListResp.Jobs) == 0 {
+			break
+		}
+		time.Sleep(time.Second * 5)
+	}
 }
