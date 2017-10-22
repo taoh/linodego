@@ -1,7 +1,7 @@
 package linodego
 
 import (
-	_ "github.com/Sirupsen/logrus"
+	_ "github.com/sirupsen/logrus"
 	"testing"
 )
 
