@@ -124,7 +124,7 @@ func (c *Client) request(params *url.Values, v *Response) error {
 
 	response, err := c.HTTPClient.Do(request)
 	if err != nil {
-		log.Errorf("Failed to get API response: ", err)
+		log.Errorf("Failed to get API response: %v", err)
 		return err
 	}
 
@@ -132,7 +132,7 @@ func (c *Client) request(params *url.Values, v *Response) error {
 
 	responseBody, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Errorf("Failed to parse API response: ", err)
+		log.Errorf("Failed to parse API response: %v", err)
 		return err
 	}
 
