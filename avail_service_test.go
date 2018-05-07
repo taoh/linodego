@@ -57,6 +57,29 @@ func TestFilterAvailKernels(t *testing.T) {
 	}
 }
 
+func TestFilterAvailKernelsOnKvm(t *testing.T) {
+	client := NewClient(APIKey, nil)
+
+	v, err := client.Avail.FilterKernels(0, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	grub2 := false
+	directDisk := false
+	for _, kernel := range v.Kernels {
+		if kernel.Label.String() == "GRUB 2" {
+			grub2 = true
+		}
+		if kernel.Label.String() == "Direct Disk" {
+			directDisk = true
+		}
+	}
+	if grub2 == false || directDisk == false {
+		t.Fail()
+	}
+}
+
 func TestAvailLinodePlans(t *testing.T) {
 	client := NewClient(APIKey, nil)
 

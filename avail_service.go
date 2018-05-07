@@ -93,16 +93,8 @@ func (t *AvailService) Kernels() (*KernelsResponse, error) {
 func (t *AvailService) FilterKernels(isxen int, iskvm int) (*KernelsResponse, error) {
 	params := &url.Values{}
 	v := KernelsResponse{}
-	xen_s := strconv.Itoa(isxen)
-	kvm_s := strconv.Itoa(iskvm)
-	if isxen < 2 && iskvm < 2 {
-		params.Add("isxen", xen_s)
-		params.Add("iskvm", kvm_s)
-	} else if isxen < 2 {
-		params.Add("isxen", xen_s)
-	} else if iskvm < 2 {
-		params.Add("iskvm", kvm_s)
-	}
+	params.Add("isxen", strconv.Itoa(isxen))
+	params.Add("iskvm", strconv.Itoa(iskvm))
 
 	if err := t.client.do("avail.kernels", params, &v.Response); err != nil {
 		return nil, err
