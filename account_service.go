@@ -45,7 +45,7 @@ func (t *AccountService) EstimateInvoice(mode string, planId int, paymentTerm in
 	return &v, nil
 }
 
-// Get Account Info
+// Info gets Account Info
 func (t *AccountService) Info() (*AccountInfoResponse, error) {
 	u := &url.Values{}
 	v := AccountInfoResponse{}

@@ -16,7 +16,7 @@ type ApiResponse struct {
 	Data map[string]interface{}
 }
 
-// Get API Specs
+// Spec gets API Specs
 func (t *ApiService) Spec(v *ApiResponse) error {
 	u := &url.Values{}
 	if err := t.client.do("api.spec", u, &v.Response); err != nil {

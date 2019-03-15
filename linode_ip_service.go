@@ -57,7 +57,7 @@ func (t *LinodeIPService) List(linodeId int, ipAddressId int) (*LinodeIPListResp
 	return &v, nil
 }
 
-// Add Private IP
+// AddPrivate adds Private IP
 func (t *LinodeIPService) AddPrivate(linodeId int) (*LinodeIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
@@ -72,7 +72,7 @@ func (t *LinodeIPService) AddPrivate(linodeId int) (*LinodeIPAddressResponse, er
 	return &v, nil
 }
 
-// Add Public IP
+// AddPublic adds Public IP
 func (t *LinodeIPService) AddPublic(linodeId int) (*LinodeIPAddressResponse, error) {
 	u := &url.Values{}
 	u.Add("LinodeID", strconv.Itoa(linodeId))
