@@ -47,7 +47,7 @@ type StackScriptsResponse struct {
 	StackScripts []StackScript
 }
 
-// Get DataCenters
+// DataCenters gets DataCenters
 func (t *AvailService) DataCenters() (*AvailDataCentersResponse, error) {
 	u := &url.Values{}
 	v := AvailDataCentersResponse{}
@@ -61,7 +61,7 @@ func (t *AvailService) DataCenters() (*AvailDataCentersResponse, error) {
 	return &v, nil
 }
 
-// Get Distributions
+// Distributions gets Distributions
 func (t *AvailService) Distributions() (*AvailDistributionsResponse, error) {
 	u := &url.Values{}
 	v := AvailDistributionsResponse{}
@@ -75,7 +75,7 @@ func (t *AvailService) Distributions() (*AvailDistributionsResponse, error) {
 	return &v, nil
 }
 
-// Get Kernels
+// Kernels gets Kernels
 func (t *AvailService) Kernels() (*KernelsResponse, error) {
 	u := &url.Values{}
 	v := KernelsResponse{}
@@ -89,7 +89,7 @@ func (t *AvailService) Kernels() (*KernelsResponse, error) {
 	return &v, nil
 }
 
-// Get filtered Kernels
+// FilterKernels gets filtered Kernels
 func (t *AvailService) FilterKernels(isxen int, iskvm int) (*KernelsResponse, error) {
 	params := &url.Values{}
 	v := KernelsResponse{}
@@ -106,7 +106,7 @@ func (t *AvailService) FilterKernels(isxen int, iskvm int) (*KernelsResponse, er
 	return &v, nil
 }
 
-// Get Linode Plans
+// LinodePlans gets Linode Plans
 func (t *AvailService) LinodePlans() (*LinodePlansResponse, error) {
 	u := &url.Values{}
 	v := LinodePlansResponse{}
@@ -120,7 +120,7 @@ func (t *AvailService) LinodePlans() (*LinodePlansResponse, error) {
 	return &v, nil
 }
 
-// Get Node Balancers
+// NodeBalancers gets Node Balancers
 func (t *AvailService) NodeBalancers() (*NodeBalancersResponse, error) {
 	u := &url.Values{}
 	v := NodeBalancersResponse{}
@@ -134,7 +134,7 @@ func (t *AvailService) NodeBalancers() (*NodeBalancersResponse, error) {
 	return &v, nil
 }
 
-// Get All Stackscripts
+// StackScripts gets All Stackscripts
 func (t *AvailService) StackScripts() (*StackScriptsResponse, error) {
 	u := &url.Values{}
 	v := StackScriptsResponse{}

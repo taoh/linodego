@@ -23,7 +23,7 @@ type LinodeConfigResponse struct {
 	LinodeConfigId LinodeConfigId
 }
 
-// Get Config List. If configId is greater than 0, limit results to given config.
+// List gets Config List. If configId is greater than 0, limit results to given config.
 func (t *LinodeConfigService) List(linodeId int, configId int) (*LinodeConfigListResponse, error) {
 	u := &url.Values{}
 	if configId > 0 {
